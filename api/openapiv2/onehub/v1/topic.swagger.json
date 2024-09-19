@@ -1,0 +1,145 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "onehub/v1/topic.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "TopicService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1CreateTopicResponse": {
+      "type": "object",
+      "properties": {
+        "topic": {
+          "$ref": "#/definitions/v1Topic",
+          "title": "Topic being created"
+        }
+      },
+      "description": "Response of an topic creation."
+    },
+    "v1DeleteTopicResponse": {
+      "type": "object",
+      "title": "Topic deletion response"
+    },
+    "v1GetTopicResponse": {
+      "type": "object",
+      "properties": {
+        "topic": {
+          "$ref": "#/definitions/v1Topic"
+        }
+      },
+      "title": "Topic get response"
+    },
+    "v1GetTopicsResponse": {
+      "type": "object",
+      "properties": {
+        "topics": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/v1Topic"
+          }
+        }
+      },
+      "title": "Topic batch-get response"
+    },
+    "v1ListTopicsResponse": {
+      "type": "object",
+      "properties": {
+        "topics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Topic"
+          },
+          "description": "The list of topics found as part of this response."
+        },
+        "nextPageKey": {
+          "type": "string",
+          "description": "The key/pointer string that subsequent List requests should pass to \ncontinue the pagination."
+        }
+      },
+      "description": "Response of a topic search/listing."
+    },
+    "v1Topic": {
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "id": {
+          "type": "string",
+          "title": "ID of the topic"
+        },
+        "creatorId": {
+          "type": "string",
+          "title": "ID of the user that created this topic"
+        },
+        "name": {
+          "type": "string",
+          "title": "A unique name of the topic that users can use to connect to"
+        },
+        "users": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "IDs of users in this topic. Right now no information about their participation is kept."
+        }
+      },
+      "title": "Topics where users would post a message"
+    },
+    "v1UpdateTopicResponse": {
+      "type": "object",
+      "properties": {
+        "topic": {
+          "$ref": "#/definitions/v1Topic",
+          "title": "Topic being updated"
+        }
+      },
+      "title": "The response for (partially) updating an Topic"
+    }
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "onehub/v1/messages.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "MessageService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "protobufNullValue": {
+      "type": "string",
+      "enum": [
+        "NULL_VALUE"
+      ],
+      "default": "NULL_VALUE",
+      "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\nThe JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value."
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1CreateMessageResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "$ref": "#/definitions/v1Message",
+          "description": "Message being created."
+        }
+      },
+      "description": "Response of an message creation."
+    },
+    "v1DeleteMessageResponse": {
+      "type": "object",
+      "title": "Message deletion response"
+    },
+    "v1GetMessageResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/v1Message"
+          }
+        }
+      },
+      "description": "Response to get a single message."
+    },
+    "v1GetMessagesResponse": {
+      "type": "object",
+      "properties": {
+        "messages": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/v1Message"
+          }
+        }
+      },
+      "description": "Response to get a single message."
+    },
+    "v1ListMessagesResponse": {
+      "type": "object",
+      "properties": {
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Message"
+          },
+          "description": "The list of topics found as part of this response."
+        },
+        "nextPageKey": {
+          "type": "string",
+          "description": "The key/pointer string that subsequent List reqeusts should pass to \ncontinue the pagination."
+        }
+      },
+      "description": "Response of a topic search/listing."
+    },
+    "v1Message": {
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the message was created on the server."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "When the message or its body were last modified (if modifications are possible)"
+        },
+        "id": {
+          "type": "string",
+          "description": "ID of the message guaranteed to be unique within a topic.\nSet only by the server and annot be modified."
+        },
+        "userId": {
+          "type": "string",
+          "description": "User sending this message."
+        },
+        "topicId": {
+          "type": "string",
+          "description": "Topic the message is part of. This is only set by the server and cannot be modified."
+        },
+        "contentType": {
+          "type": "string",
+          "title": "Content type of the message. Can be like a ContentType http\nheader of something custom like shell/command"
+        },
+        "contentText": {
+          "type": "string",
+          "description": "A simple way to just send text."
+        },
+        "contentData": {
+          "type": "object",
+          "description": "Raw contents for data stored locally as JSON\nNote we can have a combination of text, url and data\nto show different things in the View/UI."
+        }
+      },
+      "title": "An individual message in a topic"
+    },
+    "v1UpdateMessageResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "$ref": "#/definitions/v1Message",
+          "title": "THe updated message"
+        }
+      }
+    }
+  }
+}

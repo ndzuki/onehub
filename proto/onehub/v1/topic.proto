@@ -10,26 +10,26 @@ import "onehub/v1/models.proto";
 // Service for operating on topics
 service TopicService {
 	// Create a new session
-	rpc CreateTopic(CreateTopicRequest) returns (CreateTopicResponse) 
+	rpc CreateTopic(CreateTopicRequest) returns (CreateTopicResponse) {}
 
 	// List all topics from a user.
-	rpc ListTopics(ListTopicsRequest) returns (ListTopicsResponse)
+	rpc ListTopics(ListTopicsRequest) returns (ListTopicsResponse){}
 
 	// Get a particular topic
-	rpc GetTopic(GetTopicRequest) returns (GetTopicResponse)
+	rpc GetTopic(GetTopicRequest) returns (GetTopicResponse){}
 
 	// Batch get multiple topics by ID
-	rpc GetTopics(GetTopicsRequest) returns (GetTopicsResponse)
+	rpc GetTopics(GetTopicsRequest) returns (GetTopicsResponse){}
 
 	// Delete a particular topic
-	rpc DeleteTopic(DeleteTopicRequest) returns (DeleteTopicResponse)
+	rpc DeleteTopic(DeleteTopicRequest) returns (DeleteTopicResponse){}
 
 	// Updates specific fields of a topic
-	rpc UpdateTopic(UpdateTopicRequest) returns (UpdateTopicResponse)
+	rpc UpdateTopic(UpdateTopicRequest) returns (UpdateTopicResponse){}
 }
 
 // Topic creation request object
-message CeatteTopicRequest {
+message CreateTopicRequest {
 	// Topic being updated
 	Topic topic = 1;
 }
@@ -51,7 +51,7 @@ message ListTopicsRequest {
 }
 
 // Response of a topic search/listing.
-message ListTopicResponse {
+message ListTopicsResponse {
 	// The list of topics found as part of this response.
 	repeated Topic topics = 1;
 
